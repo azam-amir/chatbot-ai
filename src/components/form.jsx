@@ -41,11 +41,12 @@ function Form() {
     }
     postApiMutation(inputText);
     console.log(answerData, "postApiData");
+    setInputText("");
   };
-  const handlePlayVoice = (answer) => {
-    const utterance = new SpeechSynthesisUtterance(answer);
-    speechSynthesis.speak(utterance);
-  };
+  // const handlePlayVoice = (answer) => {
+  //   const utterance = new SpeechSynthesisUtterance(answer);
+  //   speechSynthesis.speak(utterance);
+  // };
   return (
     <form onSubmit={handleGenerator} style={{ width: "900px" }}>
       <h1>Ai Chatbot</h1>
