@@ -6,7 +6,7 @@ import MarkdownRenderer from "./markDownComponent";
 
 const postApiRequest = async (text) => {
   const response = await axios.post(
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAcVncUoW9TiFUcR5YxVHE2oylp7NY94wI",
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAcVncUoW9TiFUcR5YxVHE2oylp7NY94wI",
     {
       contents: [
         {
