@@ -4,21 +4,19 @@ import { useMutation } from "react-query";
 import { useState } from "react";
 import MarkdownRenderer from "./markDownComponent";
 
+const API_KEY = import.meta.env.VITE_API_URL;
 const postApiRequest = async (text) => {
-  const response = await axios.post(
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCczK7VA8Ji9uSn9a-SeI0kBkkh3uYxjjk",
-    {
-      contents: [
-        {
-          parts: [
-            {
-              text: text,
-            },
-          ],
-        },
-      ],
-    }
-  );
+  const response = await axios.post(API_KEY, {
+    contents: [
+      {
+        parts: [
+          {
+            text: text,
+          },
+        ],
+      },
+    ],
+  });
   return response.data;
 };
 function Form() {
@@ -66,8 +64,14 @@ function Form() {
             overflowY: "auto",
           }}
           value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
           placeholder="Enter your question"
+          onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleGenerator(e);
+            }
+          }}
         />
         <button type="submit">Generate Answer</button>
       </div>
